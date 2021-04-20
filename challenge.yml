@@ -1,0 +1,19 @@
+- name: Challenge create group
+  hosts: renamed, !taz
+  connection: ssh
+  gather_facts: no   # default is yes
+  become: yes
+
+  vars:
+          username: "manelkar"
+
+  tasks:
+  - name: create group
+    group:
+      name: funkytown
+      state: present 
+  - name: create user
+    user:
+      name: "{{ username }}"
+      group: funkytown
+
